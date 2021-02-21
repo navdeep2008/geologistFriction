@@ -1,47 +1,44 @@
-var wall , bullet;
-var speed , weight;
+
+const Engine = Matter.Engine;
+const World = Matter.World;
+const Bodies = Matter.Bodies;
+const Body = Matter.Body;
+
+function preload()
+{
+	
+}
 
 function setup() {
-  createCanvas(800,400);
+	createCanvas(800, 700);
 
-  thickness = random(22,83);
-  speed = random(223,321);
-  weight = random(30,52);
 
-  bullet = createSprite(50,200, thickness, height/2);
-  bullet.velocityX = speed;
-  bullet.shapeColor = "black";
+	engine = Engine.create();
+	world = engine.world;
 
-  wall = createSprite(1200 , 200,60,height/2);
-  wall.shapeColor = "black";
+	ground = Bodies.rectangle(width/2, height-45, width, 10 , {isStatic:true});
+	World.add(world, ground);
+
+	Engine.run(engine);
+  
 }
+
 
 function draw() {
-  background("black");  
-  var deformation = 0.5*bulletWeight*bulletSpeed*bulletSpeed/thicknessOfWall*thicknessOfWall*thicknessOfWall;
-
-  if(hasCollided(bullet , wall))
-{
-bullet.velocityX = 0;
-var damage = 0.5*weight*speed*speed / (thickness*thickness*thickness);  
-}
-
-if(damage > 10){
-wall.shapeColor = color(255,0,0);;  
-}
-
-if (damage < 10){
-wall.shapeColor = color(0.,2550); 
-}
-
+  rectMode(CENTER);
+  background(0);
+  
   drawSprites();
+ 
 }
 
-function hasCollided(bullet , wall){
-  bulletRightEdge = bullet.x + bullet.width;
-  wallLeftEdge = wall.x;
-  if(bulletRightEdge >= wallLeftEdge){
-  return true; 
-}
-  return false;
-}
+
+
+
+
+
+
+
+
+
+
