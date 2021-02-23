@@ -16,8 +16,7 @@ function setup() {
 	engine = Engine.create();
 	world = engine.world;
 
-	ground = Bodies.rectangle(width/2, height-45, width, 10 , {isStatic:true});
-	World.add(world, ground);
+	ground = newGround(200,20,2000,20);
 
 	Engine.run(engine);
   
@@ -27,6 +26,8 @@ function setup() {
 function draw() {
   rectMode(CENTER);
   background(0);
+
+  ground.display();
   
   drawSprites();
  
